@@ -2,7 +2,10 @@
 html, body, .container-fluid, .content-row {
     height: 100%;
 }
+body{
 
+    background-image: url("findpic");
+}
 .hide {
     display: none;
 }
@@ -15,3 +18,4 @@ html, body, .container-fluid, .content-row {
 .card {
     background-color: #cce5ff;
 }
+
