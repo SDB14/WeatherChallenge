@@ -1,4 +1,5 @@
-$("#searchBtn").on("click",function(){
+$("#searchBtn").on("click",function(event){
+    event.preventDefault()
     var city=document.getElementById("search-value").value
 
 
@@ -16,7 +17,13 @@ fetch(weatherUrl)
 
 .then(res => res.json())
 .then(apiResponse=>{
+// if(localStorage.indexOf(city)===-1){
+//     localStorage.push(city);
+//           window.localStorage.setItem("searchhistory", JSON.stringify(localStorage));
+//           makeRow(city);
+// }
 
+makeRow(city)
     console.log(apiResponse)
     console.log(apiResponse.main.temp)
     console.log(apiResponse.coord.lat)
@@ -71,8 +78,22 @@ var uvi=$("<p>").text("UV Index: "+apiResponse.daily[i].uvi)
 })
 }
 
+// var localStorage = JSON.parse(window.localStorage.getItem("searchhistory")) || [];
+//  if (localStorage.length > 0) {
+//   weatherSearch(localStorage[localStorage.length-1]);
+//  }
 
+//  for (var i = 0; i < localStorage.length; i++) {
+//   makeRow(localStorage[i]);
+//  }
 
+ $(".searchhistory").on("click", "li", function() {
+    weatherSearch($(this).text());
+  });
+  function makeRow(text) {
+    var li = $("<li>").addClass("list-group-item").text(text);
+    $(".searchhistory").append(li);
+  }
 
 
 
