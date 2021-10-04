@@ -7,7 +7,7 @@ $("#searchBtn").on("click",function(){
 })
 
 function weatherSearch(city){
-    var weatherUrl="http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=8f0fa8364b82a56ff6b29b97a2963b6e"
+    var weatherUrl="http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=8f0fa8364b82a56ff6b29b97a2963b6e&units=imperial"
 fetch(weatherUrl)
 // creating function to take in our input from search button into the weather url and then
 //use a fetch to search url for weather data of that city and returns non-json
@@ -39,7 +39,7 @@ card.append(name, temp, humidity)
 }
 
 function getForecast(lat,lon){
-    var weatherUrl="https://api.openweathermap.org/data/2.5/onecall?lat=" + lat +"&lon=" + lon + "&appid=8f0fa8364b82a56ff6b29b97a2963b6e"
+    var weatherUrl="https://api.openweathermap.org/data/2.5/onecall?lat=" + lat +"&lon=" + lon + "&appid=8f0fa8364b82a56ff6b29b97a2963b6e&units=imperial"
 fetch(weatherUrl)
 // creating function to take in our input from search button into the weather url and then
 //use a fetch to search url for weather data of that city and returns non-json
@@ -48,6 +48,21 @@ fetch(weatherUrl)
 
 .then(res => res.json())
 .then(apiResponse=>{
+
+for (var i=1; i<apiResponse.daily.length-2; i++){
+// every time we loop through the index do below:
+
+var tempmax=$("<p>").addClass("example").text("Daily High: " + apiResponse.daily[i].temp.max)
+var tempmin=$("<p>").addClass("example").text("Daily Low: " + apiResponse.daily[i].temp.min)
+var humidity=$("<p>").text("Humidity: " + apiResponse.daily[i].humidity)
+var forecasticon=$("<img>").attr("src",`https://openweathermap.org/img/w/${data.daily[i].weather[0].icon}.png`)
+
+
+
+    var card = $("<div>").addClass("card");
+    card.append(forecasticon, tempmax,tempmin, humidity)
+    $("#fivedayforecast").append(card)
+}
 
     console.log(apiResponse)
     

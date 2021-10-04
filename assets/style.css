@@ -4,7 +4,7 @@ html, body, .container-fluid, .content-row {
 }
 body{
 
-    background-image: url("findpic");
+    background-image: url("./weatherApp1.jpeg");
 }
 .hide {
     display: none;
