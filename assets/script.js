@@ -25,8 +25,9 @@ fetch(weatherUrl)
 var name=$("<h2>").text(apiResponse.name)
 var temp=$("<p>").addClass("example").text("Temp: " + apiResponse.main.temp)
 var humidity=$("<p>").text("Humidity: " + apiResponse.main.humidity)
+var daysDate=$("<h3>").text(moment().format('dddd, MMMM Do'))
 var card = $("<div>").addClass("card");
-card.append(name, temp, humidity)
+card.append(name, daysDate, temp, humidity)
     $("#current").append(card)
 
     
@@ -55,12 +56,12 @@ for (var i=1; i<apiResponse.daily.length-2; i++){
 var tempmax=$("<p>").addClass("example").text("Daily High: " + apiResponse.daily[i].temp.max)
 var tempmin=$("<p>").addClass("example").text("Daily Low: " + apiResponse.daily[i].temp.min)
 var humidity=$("<p>").text("Humidity: " + apiResponse.daily[i].humidity)
-var forecasticon=$("<img>").attr("src",`https://openweathermap.org/img/w/${data.daily[i].weather[0].icon}.png`)
-
+var forecasticon=$("<img>").addClass("iconsize").attr("src",`https://openweathermap.org/img/w/${apiResponse.daily[i].weather[0].icon}.png`)
+var dailyDate=$("<h3>").text(moment().format('dddd, MMMM Do'))
 
 
     var card = $("<div>").addClass("card");
-    card.append(forecasticon, tempmax,tempmin, humidity)
+    card.append(dailyDate, forecasticon, tempmax,tempmin, humidity)
     $("#fivedayforecast").append(card)
 }
 
