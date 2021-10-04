@@ -57,12 +57,13 @@ var tempmax=$("<p>").addClass("example").text("Daily High: " + apiResponse.daily
 var tempmin=$("<p>").addClass("example").text("Daily Low: " + apiResponse.daily[i].temp.min)
 var humidity=$("<p>").text("Humidity: " + apiResponse.daily[i].humidity)
 var forecasticon=$("<img>").addClass("iconsize").attr("src",`https://openweathermap.org/img/w/${apiResponse.daily[i].weather[0].icon}.png`)
-var dailyDate=$("<h3>").text(moment().format('dddd, MMMM Do'))
-
+var dailyDate=$("<h3>").text(dayjs.unix(apiResponse.daily[i].dt).format("M/D"))
+var uvi=$("<p>").text("UV Index: "+apiResponse.daily[i].uvi)
 
     var card = $("<div>").addClass("card");
-    card.append(dailyDate, forecasticon, tempmax,tempmin, humidity)
+    card.append(dailyDate, forecasticon, tempmax,tempmin, humidity, uvi)
     $("#fivedayforecast").append(card)
+    // $("#current").append(uvi)
 }
 
     console.log(apiResponse)
