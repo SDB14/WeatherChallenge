@@ -15,7 +15,7 @@ fetch(weatherUrl)
 //data and then we json-ify (parse) the data to use on the front end
 //second .then takes it and puts it in a way to use on the screen
 
-.then(res => res.json())
+.then(res=>res.json())
 .then(apiResponse=>{
 // if(localStorage.indexOf(city)===-1){
 //     localStorage.push(city);
